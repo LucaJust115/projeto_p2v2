@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   firebase_core: ^2.32.0  # Versão do firebase_core que você está usando
+  cloud_firestore: ^4.17.5
   firebase_auth: ^4.9.0   # Certifique-se de que esta versão é compatível com a versão do firebase_core
 
 

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'home.dart';
 import 'tela_login.dart';
 import 'tela_cadastro.dart';
-import 'drawer_widget.dart';  // O menu de navegação
+import 'tela_adicionar_veiculo.dart';  // Adicionando a nova tela
 
 
 void main() async {
@@ -20,12 +20,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TelaLogin(),  // Define a TelaLogin como a tela inicial
+      home: TelaLogin(),  // Tela inicial de login
       routes: {
-        '/home': (context) => Home(),
+        '/home': (context) => Home(),  // Tela de listagem de veículos
+        '/adicionar_veiculo': (context) => AdicionarVeiculo(),  // Tela de cadastro de veículo
         '/login': (context) => TelaLogin(),
         '/cadastro': (context) => TelaCadastro(),
-
       },
     );
   }
