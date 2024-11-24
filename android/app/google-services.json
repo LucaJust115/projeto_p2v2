@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "993899381675",
+    "project_id": "atividadep2-d1d26",
+    "storage_bucket": "atividadep2-d1d26.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993899381675:android:c4bafaefec2c29e80348ee",
+        "android_client_info": {
+          "package_name": "br.unigran.projeto_p2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPrGB1aZlK7H4K0TRIk-FerE6aOBAkZ3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993899381675:android:eedd019e390c87190348ee",
+        "android_client_info": {
+          "package_name": "br.unigran.projeto_p2v2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPrGB1aZlK7H4K0TRIk-FerE6aOBAkZ3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
