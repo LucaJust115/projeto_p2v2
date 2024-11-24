@@ -17,9 +17,16 @@ class _TelaCadastroState extends State<TelaCadastro> {
         email: _emailController.text,
         password: _senhaController.text,
       );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Cadastro realizado com sucesso!'),
+        backgroundColor: Colors.green,
+      ));
       Navigator.pop(context);  // Retorna para a tela de login após o cadastro
     } catch (e) {
-      print(e);  // Tratar erros de cadastro
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Erro ao cadastrar: ${e.toString()}'),
+        backgroundColor: Colors.red,
+      ));
     }
   }
 
