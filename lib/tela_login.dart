@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'tela_cadastro.dart';  // Importar tela de cadastro
 
 class TelaLogin extends StatefulWidget {
   @override
@@ -17,9 +18,18 @@ class _TelaLoginState extends State<TelaLogin> {
         email: _emailController.text,
         password: _senhaController.text,
       );
-      Navigator.pushNamed(context, '/home');  // Redirecionar para tela Home após login
+      Navigator.pushNamed(context, '/home');  // Redireciona para a tela Home após login
     } catch (e) {
       print(e);
+    }
+  }
+
+  Future<void> _recuperarSenha() async {
+    try {
+      await _auth.sendPasswordResetEmail(email: _emailController.text);
+      // Mostrar um alerta de sucesso ou erro
+    } catch (e) {
+      print(e);  // Tratar erros de recuperação de senha
     }
   }
 
@@ -47,9 +57,16 @@ class _TelaLoginState extends State<TelaLogin> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/cadastro'); // Redirecionar para tela de cadastro
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TelaCadastro()), // Redirecionar para tela de cadastro
+                );
               },
               child: Text('Criar uma conta'),
+            ),
+            TextButton(
+              onPressed: _recuperarSenha,
+              child: Text('Esqueci a senha'),
             ),
           ],
         ),

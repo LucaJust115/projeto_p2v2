@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'tela_login.dart';
+import 'tela_cadastro.dart';
 
 
 void main() async {
@@ -19,7 +20,10 @@ class MyApp extends StatelessWidget {
       ),
       home: TelaLogin(),  // Define a TelaLogin como a tela inicial
       routes: {
+        //criar a tela home '/home': (context) => Home(),
         '/login': (context) => TelaLogin(),
+        '/cadastro': (context) => TelaCadastro(),
+
       },
     );
   }
