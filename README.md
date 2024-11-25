@@ -1,4 +1,5 @@
-#Controle de Abastecimento de Veículos - App Flutter com Firebase
+#Controle de Abastecimento de Veículos - App Flutter em conjunto com Firebase
+
 Este aplicativo permite gerenciar o abastecimento de veículos utilizando Flutter e Firebase. O app possui as seguintes funcionalidades principais:
 
 #Funcionalidades
