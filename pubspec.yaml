@@ -30,9 +30,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_core: ^2.32.0  # Versão do firebase_core que você está usando
-  cloud_firestore: ^4.17.5
-  firebase_auth: ^4.9.0   # Certifique-se de que esta versão é compatível com a versão do firebase_core
+  cupertino_icons: ^1.0.8
+  firebase_core: ^3.8.0
+  firebase_database: ^11.1.6
+  cloud_firestore: ^5.5.0
+  firebase_auth: ^5.3.3
 
 
 
@@ -44,7 +46,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
+  
 
 dev_dependencies:
   flutter_test:

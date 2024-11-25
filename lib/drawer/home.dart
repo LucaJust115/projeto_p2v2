@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'drawer_widget.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -62,31 +64,7 @@ class _HomeState extends State<Home> {
           );
         },
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            ListTile(
-              title: Text('Home'),
-              onTap: () {
-                Navigator.pushReplacementNamed(context, '/home');
-              },
-            ),
-            ListTile(
-              title: Text('Adicionar Veículo'),
-              onTap: () {
-                Navigator.pushNamed(context, '/adicionar_veiculo');
-              },
-            ),
-            ListTile(
-              title: Text('Logout'),
-              onTap: () async {
-                await _auth.signOut();
-                Navigator.pushReplacementNamed(context, '/login');
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: DrawerWidget(),  // Usando o widget Drawer modularizado
     );
   }
 }

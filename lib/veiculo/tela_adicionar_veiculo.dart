@@ -28,8 +28,8 @@ class _AdicionarVeiculoState extends State<AdicionarVeiculo> {
         'userId': user.uid, // Associa o veículo ao ID do usuário
       });
 
-      // Volta para a tela anterior após adicionar o veículo
-      Navigator.pop(context);
+      // Redireciona para a tela Home após adicionar o veículo
+      Navigator.pushReplacementNamed(context, '/home'); // Substitui a tela atual pela Home
     }
   }
 
@@ -61,7 +61,7 @@ class _AdicionarVeiculoState extends State<AdicionarVeiculo> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _adicionarVeiculo, // Adiciona o veículo
+              onPressed: _adicionarVeiculo, // Adiciona o veículo e redireciona
               child: Text('Cadastrar'),
             ),
           ],

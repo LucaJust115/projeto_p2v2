@@ -7,31 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:993899381675:android:c4bafaefec2c29e80348ee",
-        "android_client_info": {
-          "package_name": "br.unigran.projeto_p2"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBPrGB1aZlK7H4K0TRIk-FerE6aOBAkZ3s"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:993899381675:android:eedd019e390c87190348ee",
         "android_client_info": {
           "package_name": "br.unigran.projeto_p2v2"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "993899381675-f1tc8o0qphg1r2g566re3aaqbiu097b2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBPrGB1aZlK7H4K0TRIk-FerE6aOBAkZ3s"
@@ -39,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993899381675-f1tc8o0qphg1r2g566re3aaqbiu097b2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
