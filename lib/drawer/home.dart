@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../veiculo/detalhes_veiculo.dart';
 import 'drawer_widget.dart';
-
 
 class Home extends StatefulWidget {
   @override
@@ -57,14 +57,19 @@ class _HomeState extends State<Home> {
                 subtitle: Text('Modelo: ${veiculo['modelo']}'),
                 onTap: () {
                   // Redireciona para a tela de detalhes do veículo
-                  Navigator.pushNamed(context, '/detalhes_veiculo', arguments: veiculo.id);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetalhesVeiculo(veiculoId: veiculo.id),
+                    ),
+                  );
                 },
               );
             },
           );
         },
       ),
-      drawer: DrawerWidget(),  // Usando o widget Drawer modularizado
+      drawer: DrawerWidget(veiculoId: '',),  // Usando o widget Drawer modularizado
     );
   }
 }

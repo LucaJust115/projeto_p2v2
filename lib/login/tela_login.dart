@@ -60,7 +60,6 @@ class _TelaLoginState extends State<TelaLogin> {
         erro = 'Senha ou Email incorreto!';
       }
 
-      // Exibe o erro encontrado
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(erro),

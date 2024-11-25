@@ -15,7 +15,7 @@ class _TelaCadastroState extends State<TelaCadastro> {
 
   Future<void> _cadastrar() async {
     setState(() {
-      _isLoading = true;  // Inicia o indicador de carregamento
+      _isLoading = true;
       _erroMensagem = null;
     });
 
@@ -39,7 +39,6 @@ class _TelaCadastroState extends State<TelaCadastro> {
         return;
       }
 
-      // Cria o usuário com o Firebase Authentication
       await _auth.createUserWithEmailAndPassword(
         email: email,
         password: senha,

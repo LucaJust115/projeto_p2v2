@@ -64,6 +64,17 @@ class _AdicionarVeiculoState extends State<AdicionarVeiculo> {
               onPressed: _adicionarVeiculo, // Adiciona o veículo e redireciona
               child: Text('Cadastrar'),
             ),
+            SizedBox(height: 20), // Espaçamento entre os botões
+            ElevatedButton(
+              onPressed: () {
+                // Redireciona para a Home sem cadastrar o veículo
+                Navigator.pushReplacementNamed(context, '/home');
+              },
+              child: Text('Cancelar e Voltar para Home'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue, // Cor de fundo do botão
+              ),
+            ),
           ],
         ),
       ),

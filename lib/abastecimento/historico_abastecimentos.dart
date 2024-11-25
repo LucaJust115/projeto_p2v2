@@ -2,21 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HistoricoAbastecimentos extends StatelessWidget {
-  final String veiculoId;
-  HistoricoAbastecimentos({required this.veiculoId});
+  final String? veiculoId;  // O ID do veículo para mostrar o histórico, pode ser nulo
+  HistoricoAbastecimentos({this.veiculoId}) {
+    print("Veículo ID recebido: $veiculoId"); // Verifique se o ID está sendo passado
+  }
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // Função para pegar os abastecimentos do veículo específico ou todos os abastecimentos
   Stream<QuerySnapshot> _getAbastecimentos() {
-    return _firestore.collection('abastecimentos')
-        .where('veiculoId', isEqualTo: veiculoId)
-        .snapshots();
+    if (veiculoId != null && veiculoId!.isNotEmpty) {
+      // Se o veiculoId foi fornecido, filtra pelo ID do veículo
+      return _firestore.collection('abastecimentos')
+          .where('veiculoId', isEqualTo: veiculoId) // Filtra pelo veiculoId
+          .snapshots();
+    } else {
+      // Caso contrário, exibe todos os abastecimentos
+      return _firestore.collection('abastecimentos').snapshots();
+    }
   }
 
+  // Função para obter o nome do veículo a partir do ID
+  Future<String> _getNomeVeiculo(String veiculoId) async {
+    var docSnapshot = await _firestore.collection('veiculos').doc(veiculoId).get();
+    if (docSnapshot.exists) {
+      return docSnapshot['nome']; // Retorna o nome do veículo
+    }
+    return 'Veículo não encontrado'; // Caso não encontre
+  }
+
+  // Calcula o total gasto com abastecimentos
   double calcularTotalGasto(List<DocumentSnapshot> abastecimentos) {
     return abastecimentos.fold(0, (soma, doc) => soma + double.parse(doc['total']));
   }
 
+  // Calcula o total de litros abastecidos
   double calcularTotalLitros(List<DocumentSnapshot> abastecimentos) {
     return abastecimentos.fold(0, (soma, doc) => soma + double.parse(doc['quantidade']));
   }
@@ -29,7 +49,7 @@ class HistoricoAbastecimentos extends StatelessWidget {
         stream: _getAbastecimentos(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return Center(child: Text('Nenhum abastecimento registrado.'));
@@ -43,17 +63,40 @@ class HistoricoAbastecimentos extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: <Widget>[
-                Text('Total Gasto: R\$ $totalGasto'),
-                Text('Total Litros: $totalLitros L'),
+                if (veiculoId != null)
+                  Text('Total Gasto: R\$ $totalGasto'),
+                if (veiculoId != null)
+                  Text('Total Litros: $totalLitros L'),
                 SizedBox(height: 20),
                 Expanded(
                   child: ListView.builder(
                     itemCount: abastecimentos.length,
                     itemBuilder: (context, index) {
                       var abastecimento = abastecimentos[index];
-                      return ListTile(
-                        title: Text('Data: ${abastecimento['data'].toDate()}'),
-                        subtitle: Text('Total: R\$ ${abastecimento['total']}'),
+                      // Consulta o nome do veículo baseado no veiculoId
+                      return FutureBuilder<String>(
+                        future: _getNomeVeiculo(abastecimento['veiculoId']),
+                        builder: (context, vehicleSnapshot) {
+                          if (vehicleSnapshot.connectionState == ConnectionState.waiting) {
+                            return ListTile(
+                              title: Text('Data: ${abastecimento['data'].toDate()}'),
+                              subtitle: Text('Total: R\$ ${abastecimento['total']}, Carro: Carregando...'),
+                            );
+                          }
+
+                          if (vehicleSnapshot.hasError) {
+                            return ListTile(
+                              title: Text('Data: ${abastecimento['data'].toDate()}'),
+                              subtitle: Text('Total: R\$ ${abastecimento['total']}, Carro: Erro ao carregar nome'),
+                            );
+                          }
+
+                          String nomeVeiculo = vehicleSnapshot.data ?? 'Veículo não encontrado';
+                          return ListTile(
+                            title: Text('Data: ${abastecimento['data'].toDate()}'),
+                            subtitle: Text('Total: R\$ ${abastecimento['total']}, Carro: $nomeVeiculo'),
+                          );
+                        },
                       );
                     },
                   ),
