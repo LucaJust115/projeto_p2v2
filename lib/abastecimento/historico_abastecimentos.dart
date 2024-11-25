@@ -44,7 +44,9 @@ class HistoricoAbastecimentos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Histórico de Abastecimentos')),
+      appBar: AppBar(
+        title: Text('Histórico de Abastecimentos'),
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _getAbastecimentos(),
         builder: (context, snapshot) {
@@ -64,9 +66,15 @@ class HistoricoAbastecimentos extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 if (veiculoId != null)
-                  Text('Total Gasto: R\$ $totalGasto'),
+                  Text(
+                    'Total Gasto: R\$ $totalGasto',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                 if (veiculoId != null)
-                  Text('Total Litros: $totalLitros L'),
+                  Text(
+                    'Total Litros: $totalLitros L',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                 SizedBox(height: 20),
                 Expanded(
                   child: ListView.builder(

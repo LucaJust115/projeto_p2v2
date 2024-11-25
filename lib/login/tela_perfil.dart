@@ -59,41 +59,72 @@ class _TelaPerfilState extends State<TelaPerfil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Perfil')),
+      backgroundColor: Colors.grey[100], // Cor de fundo consistente
+      appBar: AppBar(
+        title: Text('Perfil'),
+        backgroundColor: Colors.blueAccent, // Cor da AppBar consistente
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
             TextField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: InputDecoration(
+                labelText: 'Email',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.email),
+              ),
               readOnly: true, // O usuário não pode editar o email
             ),
+            SizedBox(height: 20),
             TextField(
               controller: _senhaController,
-              decoration: InputDecoration(labelText: 'Nova Senha'),
+              decoration: InputDecoration(
+                labelText: 'Nova Senha',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.lock),
+              ),
               obscureText: true,
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: _alterarSenha,
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                backgroundColor: Colors.blueAccent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
               child: Text('Alterar Senha'),
             ),
             SizedBox(height: 20),
-            // Exibe o botão "Voltar ao Login" após o logout ou alteração de senha
             ElevatedButton(
               onPressed: _voltarAoLogin,
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                backgroundColor: Colors.blueAccent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
               child: Text('Voltar ao Login'),
             ),
             SizedBox(height: 20),
-            // Botão "Voltar à Home", sem fazer logout
             ElevatedButton(
               onPressed: _voltarParaHome,
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                backgroundColor: Colors.blueAccent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
               child: Text('Voltar à Home'),
             ),
             if (_isLoggedOut) ...[
-              // Este botão será mostrado após o logout
-              Text('Você foi deslogado!'),
+              Text('Você foi deslogado com sucesso!', style: TextStyle(color: Colors.green)),
             ],
           ],
         ),

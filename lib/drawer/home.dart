@@ -30,6 +30,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Meus Veículos'),
+        backgroundColor: Colors.blueAccent, // Cor do app bar
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _getVeiculos(),
@@ -52,18 +53,26 @@ class _HomeState extends State<Home> {
             itemCount: veiculos.length,
             itemBuilder: (context, index) {
               var veiculo = veiculos[index];
-              return ListTile(
-                title: Text(veiculo['nome']),
-                subtitle: Text('Modelo: ${veiculo['modelo']}'),
-                onTap: () {
-                  // Redireciona para a tela de detalhes do veículo
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DetalhesVeiculo(veiculoId: veiculo.id),
-                    ),
-                  );
-                },
+              return Card(
+                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                elevation: 5,
+                child: ListTile(
+                  leading: Icon(Icons.directions_car, size: 40, color: Colors.blueAccent), // Ícone de carro
+                  title: Text(veiculo['nome'], style: TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: Text('Modelo: ${veiculo['modelo']}'),
+                  onTap: () {
+                    // Redireciona para a tela de detalhes do veículo
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetalhesVeiculo(veiculoId: veiculo.id),
+                      ),
+                    );
+                  },
+                ),
               );
             },
           );

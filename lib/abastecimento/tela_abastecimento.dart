@@ -42,7 +42,9 @@ class _AbastecimentoState extends State<Abastecimento> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Registrar Abastecimento')),
+      appBar: AppBar(
+        title: Text('Registrar Abastecimento'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

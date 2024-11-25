@@ -16,7 +16,6 @@ class _AdicionarVeiculoState extends State<AdicionarVeiculo> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Método para adicionar um veículo ao Firestore
   Future<void> _adicionarVeiculo() async {
     User? user = _auth.currentUser;
     if (user != null) {
@@ -25,11 +24,10 @@ class _AdicionarVeiculoState extends State<AdicionarVeiculo> {
         'modelo': _modeloController.text,
         'ano': _anoController.text,
         'placa': _placaController.text,
-        'userId': user.uid, // Associa o veículo ao ID do usuário
+        'userId': user.uid,
       });
 
-      // Redireciona para a tela Home após adicionar o veículo
-      Navigator.pushReplacementNamed(context, '/home'); // Substitui a tela atual pela Home
+      Navigator.pushReplacementNamed(context, '/home');
     }
   }
 
@@ -38,6 +36,7 @@ class _AdicionarVeiculoState extends State<AdicionarVeiculo> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Adicionar Veículo'),
+        backgroundColor: Colors.blueAccent,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -61,18 +60,23 @@ class _AdicionarVeiculoState extends State<AdicionarVeiculo> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _adicionarVeiculo, // Adiciona o veículo e redireciona
+              onPressed: _adicionarVeiculo,
               child: Text('Cadastrar'),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50), backgroundColor: Colors.blueAccent,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              ),
             ),
-            SizedBox(height: 20), // Espaçamento entre os botões
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Redireciona para a Home sem cadastrar o veículo
                 Navigator.pushReplacementNamed(context, '/home');
               },
               child: Text('Cancelar e Voltar para Home'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // Cor de fundo do botão
+                backgroundColor: Colors.grey,
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               ),
             ),
           ],

@@ -74,7 +74,11 @@ class _TelaCadastroState extends State<TelaCadastro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Cadastro de Usuário")),
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        title: Text("Cadastro de Usuário"),
+        backgroundColor: Colors.blueAccent,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -85,6 +89,8 @@ class _TelaCadastroState extends State<TelaCadastro> {
                 labelText: 'Email',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.email),
+                filled: true,
+                fillColor: Colors.white,
               ),
               keyboardType: TextInputType.emailAddress,
             ),
@@ -95,6 +101,8 @@ class _TelaCadastroState extends State<TelaCadastro> {
                 labelText: 'Senha',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.lock),
+                filled: true,
+                fillColor: Colors.white,
               ),
               obscureText: true,
             ),
@@ -109,7 +117,15 @@ class _TelaCadastroState extends State<TelaCadastro> {
                 ? CircularProgressIndicator()
                 : ElevatedButton(
               onPressed: _cadastrar,
-              child: Text('Cadastrar'),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 100, vertical: 20),
+                backgroundColor: Colors.blueAccent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text('Cadastrar', style: TextStyle(fontSize: 18)),
             ),
           ],
         ),
